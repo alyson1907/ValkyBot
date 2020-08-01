@@ -1,20 +1,16 @@
 require('dotenv').config()
-const path = require('path')
+const Discord = require('discord.js')
 const { bot: botConfig } = require('./config')
-const { CommandoClient } = require('discord.js-commando')
-const bot = new CommandoClient(botConfig)
+const { parseCommand } = require('./helpers')
 
-bot.registry
-  .registerDefaultTypes()
-  .registerDefaultGroups()
-  .registerGroups([['misc', 'Miscellaneous  Group']]) // folders under `commands/` directory
-  .registerDefaultCommands()
-  .registerCommandsIn(path.join(__dirname, 'commands'))
+const bot = new Discord.Client()
 
-bot.once('ready', () => {
-  console.log(`Logged in as ${bot.user.tag}! user_id: ${bot.user.id}`)
-  bot.user.setActivity('UwU')
+bot.on('ready', () => {
+  console.log('ValkyBot ready!')
 })
-bot.on('error', console.error)
+bot.on('message', (message) => {
+  if (message.content[0] !== botConfig.prefix) return
+  const { command, args } = parseCommand(message)
+})
 
 bot.login(process.env.BOT_TOKEN)

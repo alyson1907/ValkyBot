@@ -1,6 +1,6 @@
 module.exports = {
   bot: {
-    commandPrefix: '.',
+    prefix: '.',
     owner: ['136026855785365504'],
   }
 }

@@ -1,11 +1,9 @@
-const { Message } = require('discord.js')
-
 const parseCommand = (message) => {
   const msgElements = message.content.substring(1).split(' ')
-  const command = msgElements.shift()
+  const commandName = msgElements.shift()
 
   return {
-    command,
+    name: commandName,
     args: msgElements,
   }
 }

@@ -1,14 +1,8 @@
 const musicHandler = require('./music')
-const { commandList, bot } = require('../config')
-
-const getHandlerName = (commandName) => {
-  /* eslint-disable-next-line no-unused-vars */
-  const handler = Object.entries(commandList).find(([_, commands]) => commands.includes(commandName))
-  return handler && handler[0]
-}
+const { bot } = require('../config')
 
 const commandsHandler = (message, command) => {
-  const handler = getHandlerName(command.name)
+  const { handler } = command
 
   switch (handler) {
   case 'music':

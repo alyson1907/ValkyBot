@@ -1,9 +1,11 @@
 const parseCommand = (message) => {
   const msgElements = message.content.substring(1).split(' ')
-  const commandName = msgElements.shift()
+  const handler = msgElements.shift()
+  const command = msgElements.shift()
 
   return {
-    name: commandName,
+    handler,
+    command,
     args: msgElements,
   }
 }

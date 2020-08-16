@@ -8,10 +8,10 @@ const bot = new Discord.Client()
 bot.on('ready', () => {
   console.log('ValkyBot ready!')
 })
+
 bot.on('message', (message) => {
   if (message.content[0] !== botConfig.prefix) return
   const command = parseCommand(message)
-
   commandsHandler(message, command)
 })
 

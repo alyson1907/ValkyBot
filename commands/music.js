@@ -1,5 +1,4 @@
 const ytdl = require('ytdl-core')
-const _ = require('lodash')
 
 const state = {
   queue: [],
@@ -15,7 +14,7 @@ const playAudio = async (message, command) => {
   state.queue.push(videoURL)
 
   const stream = ytdl(videoURL, { filter: 'audioonly', volume: 0.02, bitrate: 128 })
-  
+
   const connection = await voiceChannel.join()
   const dispatcher = connection.play(stream)
 
@@ -33,8 +32,9 @@ const musicHandler = (message, command) => {
   switch (commandName) {
   case 'play':
     return playAudio(message, command)
-  
-  case 'leave': return leaveVoiceChannel(message)
+
+  case 'leave':
+    return leaveVoiceChannel(message)
 
   default:
     return

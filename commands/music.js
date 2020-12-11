@@ -11,10 +11,10 @@ const playAudio = async (message, commandArgs) => {
   if (!voiceChannel) return message.reply('You need to be in a Voice Channel!')
 
   const videoURL = 'https://www.youtube.com/watch?v=tPEE9ZwTmy0' // command.args.shift()
-  state.queue.push(videoURL)
-
-  const stream = ytdl(videoURL, { filter: 'audioonly', volume: 0.02, bitrate: 128 })
-
+  if (!ytdl.validateURL(videoURL)) return message.reply('The received URL is invalid. Pleade provide a valid Youtube URL')
+  // state.queue.push(videoURL)
+  
+  const stream = ytdl(videoURL, { filter: 'audioonly', volume: 0.02, quality: 'highest' })
   const connection = await voiceChannel.join()
   const dispatcher = connection.play(stream)
 

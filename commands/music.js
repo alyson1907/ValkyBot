@@ -4,6 +4,14 @@ const state = {
   queue: [],
 }
 
+const nextSongQueue = () => {
+  return state.queue.shift()
+}
+
+const addSongQueue = (song) => {
+  state.queue.push(song)
+}
+
 const playAudio = async (message, commandArgs) => {
   if (message.channel.type !== 'text') return
 
@@ -13,11 +21,10 @@ const playAudio = async (message, commandArgs) => {
   const videoURL = 'https://www.youtube.com/watch?v=FJ3I6Zu2Kgw' // command.args.shift()
   if (!ytdl.validateURL(videoURL))
     return message.reply('The received URL is invalid. Pleade provide a valid Youtube URL')
-
-  // state.queue.push(videoURL)
+  addSongQueue(videoURL)
 
   const connection = await voiceChannel.join()
-  const stream = ytdl(videoURL, { filter: 'audioonly', volume: 1, quality: 'highest' })
+  const stream = ytdl(nextSongQueue(), { filter: 'audioonly', volume: 1, quality: 'highest' })
   const dispatcher = connection.play(stream)
 
   dispatcher.on('start', () => {

@@ -5,6 +5,7 @@ const commandsHandler = (message, command) => {
   const { handler } = command
 
   switch (handler) {
+  case 'm':
   case 'music':
     musicHandler(message, command)
     break

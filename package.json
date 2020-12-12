@@ -11,12 +11,12 @@
   "author": "Alyson Matheus Maruyama Nascimento",
   "license": "ISC",
   "dependencies": {
-    "@discordjs/opus": "^0.3.2",
-    "discord.js": "^12.2.0",
+    "@discordjs/opus": "^0.3.3",
+    "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
-    "ffmpeg-static": "^4.2.6",
-    "lodash": "^4.17.19",
-    "ytdl-core": "^3.2.0"
+    "ffmpeg-static": "^4.2.7",
+    "lodash": "^4.17.20",
+    "ytdl-core": "^4.1.4"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
